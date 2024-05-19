@@ -76,15 +76,19 @@
                 <th>Email</th>
                 <th>Address</th>
                 <th>Phone Number</th>
+                <th>Delete</th>
             </tr>
             {% for row in data %}
-                <tr>
-                    <td>{{ row[0] }}</td>
-                    <td>{{ row[1] }}</td>
-                    <td>{{ row[2] }}</td>
-                    <td>{{ row[3] }}</td>
-                    <td>{{ row[4] }}</td>
-                </tr>
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>
+                    <a href="/delete/{{ row[0] }}">Delete</a>
+                </td>
+            </tr>
             {% endfor %}
         </table>
         <p>Input ID: {{ input_id }}</p>
@@ -92,22 +96,5 @@
         <p>No data found for the provided ID.</p>
     {% endif %}
     <a href="/">Back to Home</a>
-    <!-- Your fetch data template -->
-<table border="1">
-    <tr>
-        <!-- Your table headers -->
-        <th>Action</th>
-    </tr>
-    {% for row in data %}
-        <tr>
-            <!-- Display data columns -->
-            <!-- Add a column for delete action -->
-            <td>
-                <a href="/delete/{{ row[0] }}">Delete</a>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
-
 </body>
 </html>

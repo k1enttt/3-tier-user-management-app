@@ -61,9 +61,17 @@ def get_data():
     if request.method == 'POST':
         # Retrieve data based on user input ID
         input_id = request.form['input_id']
-        select_query = "SELECT * FROM user WHERE id = %s"
-        cursor.execute(select_query, (input_id,))
+        if (input_id == '-1'):
+            # Fetch all data if the input ID is -1
+            select_query = "SELECT * FROM user"
+            cursor.execute(select_query)
+        else:
+            # Fetch data based on the provided ID
+            select_query = "SELECT * FROM user WHERE id = %s"
+            cursor.execute(select_query, (input_id,))
+        # Log data to the console
         data = cursor.fetchall()
+        print(data)
         return render_template('data.html', data=data, input_id=input_id)
     return render_template('get_data.html')
 
